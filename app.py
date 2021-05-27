@@ -71,7 +71,7 @@ class VideoTransformer(VideoProcessorBase):
     def __init__(self) -> None:
         self.threshold1 = 224
         self.result_queue = queue.Queue()
-
+    
     def _predict_image(self, image, model):
         result: List[Detection] = []
         labels = gen_labels()
@@ -94,10 +94,8 @@ class VideoTransformer(VideoProcessorBase):
         image_array = np.asarray(image)
         normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
         data[0] = normalized_image_array
-        model = tensorflow.keras.models.load_model("model/keras_model.h5")
-        
+        model = tensorflow.keras.models.load_model("model/keras_model.h5", compile=False)
         result = self._predict_image(data, model)
-        
         self.result_queue.put(result)
 
         return 0
