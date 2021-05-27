@@ -126,7 +126,8 @@ def main():
     st.image(image)
     st.title("@SpeechSign")
     query_param = cache_query_param_1()
-    if query_param is empty:
+
+    if not bool(query_param):
         query_param = cache_query_param()
     app, db = firebase()
     user_det = read_user_info(db, query_param)
