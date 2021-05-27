@@ -1,12 +1,10 @@
 import streamlit as st
 import queue
-from streamlit.elements import form
-from tensorflow.python.ops.gen_array_ops import empty
 import av
-import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
-import pyrebase
+# import firebase_admin
+# from firebase_admin import credentials
+# from firebase_admin import firestore
+# import pyrebase
 from streamlit_webrtc import (
     webrtc_streamer, 
     VideoProcessorBase,
@@ -19,13 +17,13 @@ import tensorflow.keras
 import numpy as np
 np.set_printoptions(suppress=True)
 
-def firebase():
-    if not firebase_admin._apps:
-        cred = credentials.Certificate('static/speechsign-23477-8f5b84f0980a.json')
-        app = firebase_admin.initialize_app(cred)
-    app = firebase_admin.get_app()
-    db = firestore.client()
-    return app, db
+# def firebase():
+#     if not firebase_admin._apps:
+#         cred = credentials.Certificate('static/speechsign-23477-8f5b84f0980a.json')
+#         app = firebase_admin.initialize_app(cred)
+#     app = firebase_admin.get_app()
+#     db = firestore.client()
+#     return app, db
 
 @st.cache
 def cache_query_param():
@@ -39,11 +37,11 @@ def cache_query_param_1():
     print(query_param)
     return query_param
 
-def read_user_info(db, query_param):    
-    doc_ref = db.collection(u'users').document(query_param['user'][0])
-    doc = doc_ref.get()
-    if doc.exists:
-        return doc.to_dict()
+# def read_user_info(db, query_param):    
+#     doc_ref = db.collection(u'users').document(query_param['user'][0])
+#     doc = doc_ref.get()
+#     if doc.exists:
+#         return doc.to_dict()
 
 def gen_labels():
         labels = {}
