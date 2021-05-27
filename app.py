@@ -84,12 +84,13 @@ class VideoTransformer(VideoProcessorBase):
         return result
 
     def recv(self, frame: av.VideoFrame) -> av.VideoFrame:
+        
         img = frame.to_ndarray(format="bgr24")
-        frame = cv2.resize(img, (224,224))
-        frame = Image.fromarray(frame)
+        frm = cv2.resize(img, (224,224))
+        frm = Image.fromarray(frm)
         data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
         size = (224, 224)
-        image = ImageOps.fit(frame, size, Image.ANTIALIAS)
+        image = ImageOps.fit(frm, size, Image.ANTIALIAS)
         image_array = np.asarray(image)
         normalized_image_array = (image_array.astype(np.float32) / 127.0) - 1
         data[0] = normalized_image_array
@@ -99,7 +100,7 @@ class VideoTransformer(VideoProcessorBase):
         
         self.result_queue.put(result)
 
-        return av.VideoFrame.from_ndarray(img, format="bgr24")
+        return 0
 
 def sign_detection():
     
