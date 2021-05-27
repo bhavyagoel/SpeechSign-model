@@ -1,0 +1,10 @@
+asyncio
+streamlit-webrtc
+streamlit
+firebase-admin
+opencv-python
+pyrebase
+pillow
+PyJWT
+tensorflow
+numpy
