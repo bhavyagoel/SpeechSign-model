@@ -1,6 +1,7 @@
 import streamlit as st
 import queue
 from streamlit.elements import form
+from tensorflow.python.ops.gen_array_ops import empty
 import av
 import firebase_admin
 from firebase_admin import credentials
@@ -28,6 +29,12 @@ def firebase():
 
 @st.cache
 def cache_query_param():
+    query_param = st.experimental_get_query_params()
+    print(query_param)
+    return query_param
+
+
+def cache_query_param_1():
     query_param = st.experimental_get_query_params()
     print(query_param)
     return query_param
@@ -118,7 +125,9 @@ def main():
     st.set_page_config(page_title="SpeechSign", page_icon=logo)
     st.image(image)
     st.title("@SpeechSign")
-    query_param = cache_query_param()
+    query_param = cache_query_param_1()
+    if query_param is empty:
+        query_param = cache_query_param()
     app, db = firebase()
     user_det = read_user_info(db, query_param)
     sign_detection()
