@@ -9,5 +9,3 @@ pillow
 PyJWT
 tensorflow
 numpy
-speech_recognition
-pyaudio
