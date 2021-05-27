@@ -1,4 +1,6 @@
-asyncio
+aiortc==1.2.0
+av==8.0.3
+typing_extensions==3.10.0.0
 streamlit-webrtc
 streamlit
 firebase-admin
