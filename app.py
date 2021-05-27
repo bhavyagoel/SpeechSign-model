@@ -18,7 +18,6 @@ import tensorflow.keras
 import numpy as np
 np.set_printoptions(suppress=True)
 
-
 def firebase():
     if not firebase_admin._apps:
         cred = credentials.Certificate('static/speechsign-23477-8f5b84f0980a.json')
@@ -30,6 +29,7 @@ def firebase():
 @st.cache
 def cache_query_param():
     query_param = st.experimental_get_query_params()
+    print(query_param)
     return query_param
 
 def read_user_info(db, query_param):    
@@ -118,8 +118,8 @@ def main():
     st.set_page_config(page_title="SpeechSign", page_icon=logo)
     st.image(image)
     st.title("@SpeechSign")
-    app, db = firebase()
     query_param = cache_query_param()
+    app, db = firebase()
     user_det = read_user_info(db, query_param)
     sign_detection()
 
