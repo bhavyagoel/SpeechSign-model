@@ -3,10 +3,11 @@ av==8.0.3
 typing_extensions==3.10.0.0
 streamlit==0.82.0
 streamlit_webrtc==0.20.1
-# firebase-admin
+firebase-admin
 opencv_python==4.5.2.52
-# pyrebase
 pillow
 PyJWT
 tensorflow
 numpy
+speech_recognition
+pyaudio
