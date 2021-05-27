@@ -129,8 +129,8 @@ def main():
 
     if not bool(query_param):
         query_param = cache_query_param()
-    app, db = firebase()
-    user_det = read_user_info(db, query_param)
+    # app, db = firebase()
+    # user_det = read_user_info(db, query_param)
     sign_detection()
 
 if __name__ == "__main__":
