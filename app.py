@@ -9,6 +9,7 @@ from streamlit_webrtc import (
     webrtc_streamer, 
     VideoProcessorBase,
     WebRtcMode,
+    ClientSettings
 )
 from typing import List, NamedTuple
 from PIL import Image, ImageOps
@@ -16,6 +17,12 @@ import cv2
 import tensorflow.keras
 import numpy as np
 np.set_printoptions(suppress=True)
+
+WEBRTC_CLIENT_SETTINGS = ClientSettings(
+    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": True},
+)
+
 
 # def firebase():
 #     if not firebase_admin._apps:
@@ -99,6 +106,7 @@ def sign_detection():
     ctx = webrtc_streamer(
         key="SpeechSign",
         mode=WebRtcMode.SENDRECV,
+        client_settings=WEBRTC_CLIENT_SETTINGS,
         video_processor_factory=VideoTransformer, 
         async_processing=True,)
     
